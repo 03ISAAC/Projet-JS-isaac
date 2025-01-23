@@ -2,14 +2,14 @@ const apiKey = "aa790bc7";
 
 async function getMovieDetails(id) {
   try {
-    return fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${id}&plot=full`).then(
-      (response) => response.json()
-    );
+    return fetch(
+      `https://www.omdbapi.com/?apikey=${apiKey}&i=${id}&plot=full`
+    ).then((response) => response.json());
   } catch (err) {
     return null;
   }
 }
-function loadMovieList() {
+function searchMovies() {
   let output = "";
   fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=2021`)
     .then((response) => response.json())
@@ -111,11 +111,27 @@ window.onload = async (e) => {
       .then(() => {
         setTimeout(() => {
           document.querySelector("#loader").remove();
-        }, 3000);
+        }, 300);
       })
       .catch((err) => {
         console.log("err:", err);
       });
   }
-  //   loadMovieList();
+  else{
+    console.log("no movie,should not be here.")
+    window.location.assign("/index.html")
+  }
+  //window.location.href = "http://www.w3schools.com";
+  document.querySelector("#search-trigger").addEventListener("click", (e) => {
+    const el = document.querySelector("#search-input");
+    console.log(el);
+    const query = el.value;
+    if (query != "" && query != null) {
+      console.log(query);
+      window.location.assign(`/search.html?q=${query}`);
+    } else {
+      window.location.assign(`/search.html`);
+    }
+    e.preventDefault();
+  });
 };

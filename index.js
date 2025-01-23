@@ -8,15 +8,15 @@ async function getMovieDetails(id) {
     return null;
   }
 }
-function loadMovieList() {
-    let output = "";
+function searchMovies() {
+  let output = "";
   fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=happy`)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
       /**@type any[] */
       const movies = data.Search;
-    //   let output = "";
+      //   let output = "";
       movies.forEach(async (searchResult) => {
         const movie = await getMovieDetails(searchResult.imdbID);
         if (movie != null) {
@@ -48,8 +48,10 @@ function loadMovieList() {
         document.getElementById("movies-list").innerHTML = output;
       });
     })
-    .then(()=>{
-        setTimeout(()=>{document.querySelector("#loader").remove()},3000)
+    .then(() => {
+      setTimeout(() => {
+        document.querySelector("#loader").remove();
+      }, 300);
     })
     .catch((error) => console.error("Error:", error));
 }
@@ -77,4 +79,19 @@ function loadMore() {
     .catch((error) => console.error("Error:", error));
 }
 
-window.onload = loadMovieList;
+window.onload = () => {
+  //window.location.href = "http://www.w3schools.com";
+  document.querySelector("#search-trigger").addEventListener("click", (e) => {
+    const el = document.querySelector("#search-input");
+    console.log(el);
+    const query = el.value;
+    if (query != "" && query != null) {
+      console.log(query);
+      window.location.assign(`/search.html?q=${query}`);
+    } else {
+      window.location.assign(`/search.html`);
+    }
+    e.preventDefault();
+  });
+  searchMovies();
+};

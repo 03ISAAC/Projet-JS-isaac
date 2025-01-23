@@ -2,9 +2,6 @@
   --card-width: 250px;
 }
 
-body {
-  min-height: 100dvh;
-}
 
 .top-nav {
   position: absolute;
@@ -41,6 +38,7 @@ body {
   overflow-x: hidden;
   background: url("/image1.jpg");
   background-size: cover;
+  background-attachment: fixed;
   backdrop-filter: brightness(60%);
   background-repeat: no-repeat;
   background-color: #000;
@@ -58,6 +56,10 @@ footer {
   padding: 20px;
   background-color: transparent;
   position: absolute;
+
+  a i {
+    height:35px;
+  }
 }
 
 .top-nav .logo {
@@ -228,4 +230,56 @@ a{
 }
 .content{
   padding:50px;
+}
+
+
+.form{
+  /* margin: 20px; */
+  position: relative;
+  color:#fff;
+}
+
+/* .form .fa-search{
+  color:#fff;
+  position: absolute;
+  top:20px;
+  left: 20px;
+} */
+
+.form span{
+  color:#fff;
+      position: absolute;
+  right: 17px;
+  top: 13px;
+  padding: 2px;
+  border-left: 1px solid #d1d5db;
+
+}
+
+.left-pan{
+  padding-left: 7px;
+}
+
+.left-pan i{
+ 
+ padding-left: 10px;
+}
+
+.form-input{
+
+  color:#fff;
+  height: 55px;
+  text-indent: 33px;
+  border-radius: 10px;
+  background-color:#0000;
+}
+
+.form-input:focus{
+
+  box-shadow: none;
+  border:none;
+}
+
+#search-trigger{
+  cursor:pointer;
 }
