@@ -189,7 +189,10 @@ footer {
   justify-content: center;
   margin: auto;
   color: #fff;
-
+a{
+  text-decoration: none;
+  color:#fff;
+}
   .movie-info {
     background-color: #0007;
     padding: 10px;
@@ -203,6 +206,14 @@ footer {
       margin-left: auFto;
       margin-right: auto;
       width: 100%;
+      object-fit: cover;
+      height:300px;
+    }
+
+    .plot{
+      height:200px;
+      max-height:200px;
+      overflow-y: auto;
     }
 
     &:hover {

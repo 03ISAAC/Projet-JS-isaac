@@ -8,9 +8,9 @@ async function getMovieDetails(id) {
     return null;
   }
 }
-function loadTrendingMovies() {
+function loadMovieList() {
     let output = "";
-  fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=2021`)
+  fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=happy`)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -23,6 +23,7 @@ function loadTrendingMovies() {
           console.log(movie);
 
           output += `
+                <a href="/movie.html?id=${movie.imdbID}">
                 <div class="movie-info">
                 <img
                   src="${movie.Poster}"
@@ -35,11 +36,12 @@ function loadTrendingMovies() {
                 <div class="movie-details">
                   <h3>${movie.Title}</h3>
                   <p class="details">${movie.Year} / ${movie.Rated} / ${movie.Runtime} / ${movie.Genre}</p>
-                  <p>
+                  <p class="plot">
                     ${movie.Plot}
                   </p>
                 </div>
               </div>
+              </a>
                 `;
         }
         console.log(output);
@@ -75,4 +77,4 @@ function loadMore() {
     .catch((error) => console.error("Error:", error));
 }
 
-window.onload = loadTrendingMovies;
+window.onload = loadMovieList;
